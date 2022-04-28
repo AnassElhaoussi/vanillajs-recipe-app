@@ -23,6 +23,7 @@ body {
     align-items: center;
     text-align: center;
     overflow-x: hidden;
+    gap: 3rem;
     background-color: rgba(245, 245, 245, 0.788);
 }
 
