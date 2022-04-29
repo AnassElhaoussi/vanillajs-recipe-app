@@ -2,7 +2,9 @@
 const mainSection = document.querySelector(".main-section")
 const BASE_API_URL = "https://themealdb.com/api/json/v1/1/categories.php"
 const inputField = document.querySelector(".navigation input")
-
+const recipeSection = document.querySelector('.recipe-section')
+const navigation = document.querySelector('.navigation')
+const backButton = document.querySelector(".recipe-infos i")
 
 const fetchData = api => {
     fetch(api).then(res => {
@@ -38,7 +40,23 @@ const displayMealsSearch = searchCards => {
         <button>Get recipe</button>
         `
 
+        searchCardEl.addEventListener('click', () => {
+            navigation.classList.add('active')
+            mainSection.classList.add('active')
+            recipeSection.classList.add('active')
+        })
+
+        backButton.addEventListener('click', () => {
+            navigation.classList.remove('active')
+            mainSection.classList.remove('active')
+            recipeSection.classList.remove('active')
+
+        })
+
         mainSection.appendChild(searchCardEl)
+
+
+        
     })
 }
 
@@ -49,18 +67,41 @@ const displayMeals = mealsCards => {
     mainSection.innerHTML = ""
     mealsCards.forEach(card => {
         const cardEl = document.createElement('div')
+        
         cardEl.classList.add("card")
 
         cardEl.innerHTML = `
         <img src="${card.strCategoryThumb}" alt="image">
             <h3>${card.strCategory}</h3>
-            <button>Get recipe</button>
+            <button class="btn">Get description</button>
         `
+        
+        cardEl.addEventListener('click', () => {
+            navigation.classList.add('active')
+            mainSection.classList.add('active')
+            recipeSection.classList.add('active')
+            displayLabel(mealsCards)
+        })
+
+        backButton.addEventListener('click', () => {
+            navigation.classList.remove('active')
+            mainSection.classList.remove('active')
+            recipeSection.classList.remove('active')
+
+        })
+
+
+        
+
+        
+        
 
         mainSection.appendChild(cardEl)
         
     });
 }
+
+
 
 inputField.addEventListener('keyup', e => {
     const {value} = e.target
@@ -75,4 +116,11 @@ inputField.addEventListener('keyup', e => {
     }
 
 })
+
+
+
+
+
+
+
 

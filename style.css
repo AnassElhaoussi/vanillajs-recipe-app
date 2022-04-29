@@ -27,10 +27,14 @@ body {
     background-color: rgba(245, 245, 245, 0.788);
 }
 
-.header {
-    padding: 3rem 0;
-    
+
+.navigation.active {
+    display: none;
 }
+.main-section.active {
+    display: none;
+}
+
 
 .navigation {
     display: flex;
@@ -108,4 +112,38 @@ body {
 
 .card button:hover {
     transform: scale(1.1);
+}
+
+.recipe-section {
+    display: none;
+    background-color: antiquewhite;
+    padding: 3rem;
+    max-width: 40rem;
+    position: absolute;
+    top: 25%;
+}
+
+.recipe-section.active {
+    display: flex;
+}
+
+.recipe-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.recipe-infos i {
+    position: absolute;
+    left: 10%;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.recipe-infos h2 {
+    font-size: 3rem;
+}
+
+.recipe-infos p {
+    font-size: 1.4rem;
 }
