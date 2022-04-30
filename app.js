@@ -5,6 +5,8 @@ const inputField = document.querySelector(".navigation input")
 const recipeSection = document.querySelector('.recipe-section')
 const navigation = document.querySelector('.navigation')
 const backButton = document.querySelector(".recipe-infos i")
+const info = document.querySelector('.info')
+
 
 const fetchData = api => {
     fetch(api).then(res => {
@@ -25,6 +27,7 @@ const fetchSearchData = (valueName) => {
     }).then(info => {
         console.log(info.meals);
         displayMealsSearch(info.meals)
+        
     })
 }
 
@@ -86,8 +89,9 @@ const displaySearchLabel = searchCard => {
 
 }
  
-const displayMealsSearch = searchCards => {
+const displayMealsSearch = (searchCards) => {
     mainSection.innerHTML = ""
+    
     searchCards.forEach(searchCard => {
         const searchCardEl = document.createElement('div')
         searchCardEl.classList.add('card')
@@ -97,6 +101,8 @@ const displayMealsSearch = searchCards => {
         <h3>${searchCard.strMeal}</h3>
         <button>Get recipe</button>
         `
+
+        
 
         searchCardEl.addEventListener('click', () => {
             navigation.classList.add('active')
@@ -112,6 +118,8 @@ const displayMealsSearch = searchCards => {
 
         })
 
+        
+
         mainSection.appendChild(searchCardEl)
 
 
@@ -121,21 +129,18 @@ const displayMealsSearch = searchCards => {
 
 
 
-
-
-
-
-
 inputField.addEventListener('keyup', e => {
     const {value} = e.target
-    const mealName = document.querySelector('.card h3')
-    
+
     if(value){
         fetchSearchData(value)
+        info.innerHTML = "Results:"
+
     }
 
     else {
         fetchData(BASE_API_URL)
+        info.innerHTML = ""
     }
 
 })
