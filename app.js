@@ -28,38 +28,17 @@ const fetchSearchData = (valueName) => {
     })
 }
 
-const displayMealsSearch = searchCards => {
-    mainSection.innerHTML = ""
-    searchCards.forEach(searchCard => {
-        const searchCardEl = document.createElement('div')
-        searchCardEl.classList.add('card')
+const displayLabel = card => {
+    const labelContainer = document.querySelector('.label-text')
 
-        searchCardEl.innerHTML = `
-        <img src="${searchCard.strMealThumb}" alt="image">
-        <h3>${searchCard.strMeal}</h3>
-        <button>Get recipe</button>
-        `
-
-        searchCardEl.addEventListener('click', () => {
-            navigation.classList.add('active')
-            mainSection.classList.add('active')
-            recipeSection.classList.add('active')
-        })
-
-        backButton.addEventListener('click', () => {
-            navigation.classList.remove('active')
-            mainSection.classList.remove('active')
-            recipeSection.classList.remove('active')
-
-        })
-
-        mainSection.appendChild(searchCardEl)
+    labelContainer.innerHTML = `
+    <img src="${card.strCategoryThumb}" alt="image">
+        <h2>${card.strCategory}</h2>
+        <p>${card.strCategoryDescription}</p>
+    `
 
 
-        
-    })
 }
-
 
 
 
@@ -80,7 +59,50 @@ const displayMeals = mealsCards => {
             navigation.classList.add('active')
             mainSection.classList.add('active')
             recipeSection.classList.add('active')
-            displayLabel(mealsCards)
+            displayLabel(card)
+        })
+
+        backButton.addEventListener('click', () => {
+            navigation.classList.remove('active')
+            mainSection.classList.remove('active')
+            recipeSection.classList.remove('active')
+            
+
+        })
+
+        mainSection.appendChild(cardEl)
+        
+    });
+}
+
+const displaySearchLabel = searchCard => {
+    const searchLabelContainer = document.querySelector('.label-text')
+    
+    searchLabelContainer.innerHTML = `
+    <img src="${searchCard.strMealThumb}" alt="image">
+          <h2>${searchCard.strMeal}</h2>
+          <p>${searchCard.strInstructions}</p>
+    `
+
+}
+ 
+const displayMealsSearch = searchCards => {
+    mainSection.innerHTML = ""
+    searchCards.forEach(searchCard => {
+        const searchCardEl = document.createElement('div')
+        searchCardEl.classList.add('card')
+
+        searchCardEl.innerHTML = `
+        <img src="${searchCard.strMealThumb}" alt="image">
+        <h3>${searchCard.strMeal}</h3>
+        <button>Get recipe</button>
+        `
+
+        searchCardEl.addEventListener('click', () => {
+            navigation.classList.add('active')
+            mainSection.classList.add('active')
+            recipeSection.classList.add('active')
+            displaySearchLabel(searchCard)
         })
 
         backButton.addEventListener('click', () => {
@@ -90,16 +112,17 @@ const displayMeals = mealsCards => {
 
         })
 
+        mainSection.appendChild(searchCardEl)
+
 
         
-
-        
-        
-
-        mainSection.appendChild(cardEl)
-        
-    });
+    })
 }
+
+
+
+
+
 
 
 
