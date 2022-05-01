@@ -6,6 +6,9 @@ const recipeSection = document.querySelector('.recipe-section')
 const navigation = document.querySelector('.navigation')
 const backButton = document.querySelector(".recipe-infos i")
 const infoText = document.querySelector('.info')
+const labelButton = document.querySelector('.label button')
+const dropdownColumn = document.querySelector('.col2')
+
 
 
 const fetchData = api => {
@@ -55,9 +58,10 @@ const displayMeals = mealsCards => {
         cardEl.innerHTML = `
         <img src="${card.strCategoryThumb}" alt="image">
             <h3>${card.strCategory}</h3>
-            <button class="btn">Get description</button>
+            <button class="des-btn">Get description</button>
         `
-        
+
+
         cardEl.addEventListener('click', () => {
             navigation.classList.add('active')
             mainSection.classList.add('active')
@@ -131,15 +135,18 @@ inputField.addEventListener('keyup', e => {
     if(value){
         fetchSearchData(value)
         infoText.innerHTML = "Results:"
-
-    }
-
-    else {
-        fetchData(BASE_API_URL)
-        infoText.innerHTML = ""
+    } else {
+            fetchData(BASE_API_URL)
+            infoText.innerHTML = ""
     }
 
 })
+
+labelButton.addEventListener('click', () => {
+    dropdownColumn.classList.toggle('isactive')
+})
+
+
 
 
 

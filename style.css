@@ -37,10 +37,10 @@ body {
 
 .navigation {
     display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    align-items: center;
-   
+    flex-direction: colmun;
+    gap: 4rem;
+    flex-wrap: wrap;
+
 }
 
 .navigation h1 {
@@ -65,6 +65,57 @@ body {
     left: 10%;
 }
 
+.col2 {
+    position: absolute;
+    right: 10%;
+}
+
+.dropdown {
+    min-width: 10%;
+    text-align: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 0.6rem;
+    background-color: rgb(236, 236, 236);
+    position: relative;
+    z-index: 999;
+
+
+}
+
+
+.label button {
+    border: none;
+    padding: 1.5rem 3rem;
+    border-radius: 0.6rem;
+    color: var(--color);
+    background-color: var(--background-el);
+    cursor: pointer;
+
+}
+
+.options {
+    
+    
+}
+
+.options a {
+    display: none;
+    justify-content: flex-start;
+    color: var(--color);
+    text-decoration: none;
+    padding: 0.8rem 3rem;
+    font-size: 1.2rem;
+    transition: 0.6s ease;
+    cursor: pointer;
+
+}
+
+
+
+.col2.isactive .options a {
+    display: flex;
+}
+
 
 .main-section {
     display: flex;
@@ -72,6 +123,9 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+
 
 }
 
