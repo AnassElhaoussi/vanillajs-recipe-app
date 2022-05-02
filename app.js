@@ -1,13 +1,16 @@
 
 const mainSection = document.querySelector(".main-section")
-const BASE_API_URL = "https://themealdb.com/api/json/v1/1/categories.php"
+const CATEGORIES_URL = "https://themealdb.com/api/json/v1/1/categories.php"
+const SEARCH_API = "https://themealdb.com/api/json/v1/1/search.php?s="
+const FILTER_BY_CAT_URL = "https://themealdb.com/api/json/v1/1/filter.php?c="
 const inputField = document.querySelector(".navigation input")
 const recipeSection = document.querySelector('.recipe-section')
 const navigation = document.querySelector('.navigation')
 const backButton = document.querySelector(".recipe-infos i")
 const infoText = document.querySelector('.info')
 const labelButton = document.querySelector('.label button')
-const dropdownColumn = document.querySelector('.col2')
+
+
 
 
 
@@ -21,15 +24,16 @@ const fetchData = api => {
     })
 }
 
-fetchData(BASE_API_URL)
+fetchData(CATEGORIES_URL)
 
 
-const fetchSearchData = (valueName) => {
-    fetch(`https://themealdb.com/api/json/v1/1/search.php?s=${valueName}`).then(response => {
+const fetchSearchData = (api, valueName) => {
+    fetch(`${api}${valueName}`).then(response => {
         return response.json()
-    }).then(info => {
-        console.log(info.meals);
-        displayMealsSearch(info.meals)
+    }).then(data => {
+        console.log(data.meals);
+        displayMealsSearch(data.meals)
+        
 
         
     })
@@ -50,36 +54,37 @@ const displayLabel = card => {
 
 const displayMeals = mealsCards => {
     mainSection.innerHTML = ""
-    mealsCards.forEach(card => {
-        const cardEl = document.createElement('div')
-        
-        cardEl.classList.add("card")
-
-        cardEl.innerHTML = `
-        <img src="${card.strCategoryThumb}" alt="image">
-            <h3>${card.strCategory}</h3>
-            <button class="des-btn">Get description</button>
-        `
-
-
-        cardEl.addEventListener('click', () => {
-            navigation.classList.add('active')
-            mainSection.classList.add('active')
-            recipeSection.classList.add('active')
-            displayLabel(card)
-        })
-
-        backButton.addEventListener('click', () => {
-            navigation.classList.remove('active')
-            mainSection.classList.remove('active')
-            recipeSection.classList.remove('active')
+        mealsCards.forEach(card => {
+            const cardEl = document.createElement('div')
             
-
+            cardEl.classList.add("card")
+    
+            cardEl.innerHTML = `
+            <img src="${card.strCategoryThumb}" alt="image">
+                <h3>${card.strCategory}</h3>
+                <button class="des-btn">Get description</button>
+            `
+    
+    
+            cardEl.addEventListener('click', () => {
+                navigation.classList.add('active')
+                mainSection.classList.add('active')
+                recipeSection.classList.add('active')
+                displayLabel(card)
+            })
+    
+            backButton.addEventListener('click', () => {
+                navigation.classList.remove('active')
+                mainSection.classList.remove('active')
+                recipeSection.classList.remove('active')
+                
+    
+            })
+    
+            mainSection.appendChild(cardEl)
+            
         })
-
-        mainSection.appendChild(cardEl)
-        
-    });
+   
 }
 
 const displaySearchLabel = searchCard => {
@@ -95,55 +100,56 @@ const displaySearchLabel = searchCard => {
  
 const displayMealsSearch = (searchCards) => {
     mainSection.innerHTML = ""
+    if(searchCards){
+        searchCards.forEach(searchCard => {
+            const searchCardEl = document.createElement('div')
+            searchCardEl.classList.add('card')
     
-    searchCards.forEach(searchCard => {
-        const searchCardEl = document.createElement('div')
-        searchCardEl.classList.add('card')
-
-        searchCardEl.innerHTML = `
-        <img src="${searchCard.strMealThumb}" alt="image">
-        <h3>${searchCard.strMeal}</h3>
-        <button>Get recipe</button>
-        `
-
-        
-
-        searchCardEl.addEventListener('click', () => {
-            navigation.classList.add('active')
-            mainSection.classList.add('active')
-            recipeSection.classList.add('active')
-            displaySearchLabel(searchCard)
+            searchCardEl.innerHTML = `
+            <img src="${searchCard.strMealThumb}" alt="image">
+            <h3>${searchCard.strMeal}</h3>
+            <button>Get recipe</button>
+            `
+    
+            
+    
+            searchCardEl.addEventListener('click', () => {
+                navigation.classList.add('active')
+                mainSection.classList.add('active')
+                recipeSection.classList.add('active')
+                displaySearchLabel(searchCard)
+            })
+    
+            backButton.addEventListener('click', () => {
+                navigation.classList.remove('active')
+                mainSection.classList.remove('active')
+                recipeSection.classList.remove('active')
+    
+            })
+    
+            mainSection.appendChild(searchCardEl)
+            
         })
 
-        backButton.addEventListener('click', () => {
-            navigation.classList.remove('active')
-            mainSection.classList.remove('active')
-            recipeSection.classList.remove('active')
-
-        })
-
-        mainSection.appendChild(searchCardEl)
+    } else {
+        infoText.innerHTML = "No results found"
+    }
         
-    })
+    
 }
-
 
 
 inputField.addEventListener('keyup', e => {
     const {value} = e.target
 
     if(value){
-        fetchSearchData(value)
+        fetchSearchData(SEARCH_API, value)
         infoText.innerHTML = "Results:"
     } else {
-            fetchData(BASE_API_URL)
+            fetchData(CATEGORIES_URL)
             infoText.innerHTML = ""
     }
 
-})
-
-labelButton.addEventListener('click', () => {
-    dropdownColumn.classList.toggle('isactive')
 })
 
 
