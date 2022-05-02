@@ -9,6 +9,8 @@ const navigation = document.querySelector('.navigation')
 const backButton = document.querySelector(".recipe-infos i")
 const infoText = document.querySelector('.info')
 const labelButton = document.querySelector('.label button')
+const footerSection = document.querySelector('.footer-section')
+
 
 
 
@@ -75,6 +77,7 @@ const displayMeals = mealsCards => {
                 navigation.classList.add('active')
                 mainSection.classList.add('active')
                 recipeSection.classList.add('active')
+                footerSection.classList.add('active')
                 displayLabel(card)
             })
     
@@ -82,7 +85,7 @@ const displayMeals = mealsCards => {
                 navigation.classList.remove('active')
                 mainSection.classList.remove('active')
                 recipeSection.classList.remove('active')
-                
+                footerSection.classList.remove('active')
     
             })
     
@@ -122,6 +125,7 @@ const displayMealsSearch = (searchCards) => {
                 navigation.classList.add('active')
                 mainSection.classList.add('active')
                 recipeSection.classList.add('active')
+                footerSection.classList.add('active')
                 displaySearchLabel(searchCard)
             })
     
@@ -129,6 +133,7 @@ const displayMealsSearch = (searchCards) => {
                 navigation.classList.remove('active')
                 mainSection.classList.remove('active')
                 recipeSection.classList.remove('active')
+                footerSection.classList.remove('active')
     
             })
     

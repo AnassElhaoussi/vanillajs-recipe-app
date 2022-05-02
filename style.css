@@ -181,6 +181,11 @@ body{
     padding: 1rem 3rem;
     margin: 4rem 0 0;
     user-select: none;
+    display: flex;
+}
+
+.footer-section.active {
+    display: none;
 }
 
 .footer-container h3 {
