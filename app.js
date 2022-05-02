@@ -39,6 +39,8 @@ const fetchSearchData = (api, valueName) => {
     })
 }
 
+
+
 const displayLabel = card => {
     const labelContainer = document.querySelector('.label-text')
 
@@ -49,6 +51,9 @@ const displayLabel = card => {
     `
 
 }
+
+
+
 
 
 

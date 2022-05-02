@@ -16,14 +16,14 @@ html {
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+body{
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
     gap: 3rem;
     background-color: rgba(245, 245, 245, 0.788);
-    padding: 4rem 0;
+    padding: 4rem 0 0;
 }
 
 
@@ -173,4 +173,22 @@ body {
     font-size: 4rem;
     font-weight: 800;
     margin-top: 4rem;
+}
+
+.footer-section {
+    background-color: var(--orange-color);
+    width: 100%;
+    padding: 1rem 3rem;
+    margin: 4rem 0 0;
+    user-select: none;
+}
+
+.footer-container h3 {
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+}
+
+.footer-container span {
+    color: rgb(131, 199, 245);
+    font-size: 1.4rem;
 }
